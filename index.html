@@ -338,7 +338,7 @@
 <body onload="mostrarSeccion('servicios')">
   <header>
     <h1>Departamento Académico de Geología</h1>
-    <img src="img/logo1.png" alt="Logo" />
+    <img src="logo1.png" alt="Logo" />
   </header>
 
   <div class="botones-flotantes">
@@ -384,27 +384,27 @@
       <h2 style="text-align:center;">Nuestros Servicios</h2>
       <div class="servicios-grid">
         <div class="servicio-carta" onclick="mostrarDetalleServicio('topografia')">
-          <img src="img/Estación.jpg">
+          <img src="Estación.jpg">
           <h4>Topografía</h4>
         </div>
         <div class="servicio-carta" onclick="mostrarDetalleServicio('drones')">
-          <img src="img/dji_frontal.jpg">
+          <img src="dji_frontal.jpg">
           <h4>Drones</h4>
         </div>
         <div class="servicio-carta" onclick="mostrarDetalleServicio('sig')">
-          <img src="img/cartografiado_geologico.jpg">
+          <img src="cartografiado_geologico.jpg">
           <h4>SIG</h4>
         </div>
         <div class="servicio-carta" onclick="mostrarDetalleServicio('multiparametro')">
-          <img src="img/multiparametro.jpg">
+          <img src="multiparametro.jpg">
           <h4>Multiparámetro</h4>
         </div>
         <div class="servicio-carta" onclick="mostrarDetalleServicio('equipos')">
-          <img src="img/Picota_geologica.jpg">
+          <img src="Picota_geologica.jpg">
           <h4>Equipos</h4>
         </div>
         <div class="servicio-carta" onclick="mostrarDetalleServicio('alquiler')">
-          <img src="img/Brujula_Brunton.jpg">
+          <img src="Brujula_Brunton.jpg">
           <h4>Alquiler</h4>
         </div>
       </div>
@@ -449,7 +449,7 @@
   </a>
 
   <video autoplay muted loop playsinline style="position:fixed; top:0; left:0; min-width:100%; min-height:100%; z-index:-1; object-fit:cover;">
-    <source src="img/sin_logo.mp4" type="video/mp4">
+    <source src="sin_logo.mp4" type="video/mp4">
   </video>
 
   <div id="modalServicio" class="modal-servicio">
@@ -515,7 +515,7 @@
       switch(servicioId) {
         case 'topografia':
           modalTitulo.textContent = 'Servicio de Topografía';
-          modalImagen.src = 'img/car.jpg';
+          modalImagen.src = 'car.jpg';
           modalDescripcion.textContent = 'Levantamientos topográficos profesionales para diversos proyectos:';
           modalDetalles.innerHTML = `
             <ul>
@@ -531,7 +531,7 @@
           
         case 'drones':
           modalTitulo.textContent = 'Servicio de Drones';
-          modalImagen.src = 'img/dji_frontal.jpg';
+          modalImagen.src = 'dji_frontal.jpg';
           modalDescripcion.textContent = 'Fotogrametría aérea y análisis geoespacial:';
           modalDetalles.innerHTML = `
             <ul>
@@ -547,7 +547,7 @@
           
         case 'sig':
           modalTitulo.textContent = 'Sistemas de Información Geográfica';
-          modalImagen.src = 'img/SIG.jpg';
+          modalImagen.src = 'SIG.jpg';
           modalDescripcion.textContent = 'Soluciones geoespaciales integrales:';
           modalDetalles.innerHTML = `
             <ul>
@@ -565,7 +565,7 @@
         
         case 'multiparametro':
           modalTitulo.textContent = 'Servicio de Monitoreo con Multiparámetro';
-          modalImagen.src = 'img/multiparametro.jpg';
+          modalImagen.src = 'multiparametro.jpg';
           modalDescripcion.textContent = 'Análisis in situ de calidad de agua con tecnología multiparamétrica:';
           modalDetalles.innerHTML = `
             <ul>
@@ -580,7 +580,7 @@
 
         case 'equipos':
           modalTitulo.textContent = 'Equipos Geológicos y Geotécnicos';
-          modalImagen.src = 'img/Picota_geologica.jpg';
+          modalImagen.src = 'Picota_geologica.jpg';
           modalDescripcion.textContent = 'Contamos con equipos profesionales disponibles para trabajo de campo:';
           modalDetalles.innerHTML = `
             <ul>
@@ -594,7 +594,7 @@
 
         case 'alquiler':
           modalTitulo.textContent = 'Servicio de Alquiler de Equipos';
-          modalImagen.src = 'img/Brujula_Brunton.jpg';
+          modalImagen.src = 'Brujula_Brunton.jpg';
           modalDescripcion.textContent = 'Disponibilidad de alquiler de equipos para estudiantes, investigadores o empresas:';
           modalDetalles.innerHTML = `
             <ul>
@@ -608,7 +608,7 @@
 
           case 'Equipos':
           modalTitulo.textContent = 'Alquiler';
-          modalImagen.src = 'img/SIG.jpg';
+          modalImagen.src = 'SIG.jpg';
           modalDescripcion.textContent = 'xxxxxx:';
           modalDetalles.innerHTML = `
             <ul>
@@ -644,7 +644,7 @@
       switch(extraId) {
         case 'extra1':
           modalTitulo.textContent = 'Cartografiado Geotécnico';
-          modalImagen.src = 'img/cartografiado_geotecnico.jpg';
+          modalImagen.src = 'cartografiado_geotecnico.jpg';
           modalDescripcion.innerHTML = `
             <p>Análisis geotécnicos completos para proyectos de construcción e ingeniería:</p>
             <ul>
@@ -664,7 +664,7 @@
           
         case 'extra2':
           modalTitulo.textContent = 'Asesorías Técnicas';
-          modalImagen.src = 'img/extra2.jpg';
+          modalImagen.src = 'extra2.jpg';
           modalDescripcion.innerHTML = `
             <p>Consultoría especializada en geología para diversos sectores:</p>
             <ul>
@@ -679,7 +679,7 @@
           break;
           case 'extra3':
           modalTitulo.textContent = 'Asesorías Técnicas';
-          modalImagen.src = 'img/extra2.jpg';
+          modalImagen.src = 'extra2.jpg';
           modalDescripcion.innerHTML = `
             <p>Consultoría especializada en geología para diversos sectores:</p>
             <ul>
@@ -694,7 +694,7 @@
           break;
           case 'extra4':
           modalTitulo.textContent = 'Talleres Especializados en SIG, Modelamiento, Procesamiento Geoespacial aplicado a la Ingeniería Geológica';
-          modalImagen.src = 'img/extra2.jpg';
+          modalImagen.src = 'extra2.jpg';
           modalDescripcion.innerHTML = `
             <p>Formación Aplicada en Sistemas de Información Geográfica, Modelamiento y Topografía:</p>
             <ul>
@@ -710,7 +710,7 @@
           break;
           case 'extra5':
           modalTitulo.textContent = 'Asesorías Técnicas';
-          modalImagen.src = 'img/extra2.jpg';
+          modalImagen.src = 'extra2.jpg';
           modalDescripcion.innerHTML = `
             <p>Consultoría especializada en geología para diversos sectores:</p>
             <ul>
@@ -773,4 +773,5 @@
     });
   </script>
 </body>
+
 </html>
