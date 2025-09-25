@@ -1,777 +1,332 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Departamento Académico de Geología</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
     body {
-      font-family: 'Roboto', sans-serif;
-      color: rgba(0, 0, 0, 0.842);
-      background-color: transparent;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
     }
 
-    main {
-      flex: 1;
-      background-color: transparent;
-    }
-
+    /* Encabezado con logo */
     header {
-  background-color: rgba(128, 0, 32, 0.8);
-  color: rgb(255, 255, 255);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px 20px;
-  min-height: 100px;
-  z-index: 2;
-  position: relative;
-  backdrop-filter: blur(5px);
-  font-size: 28px;
-
-  /* 🔹 Halo (resplandor) */
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.637),
-               0 0 15px rgba(255, 255, 255, 0.425);
-}
-
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background-color: rgba(128, 0, 32, 0.9);
+      color: white;
+    }
 
     header img {
-      height: 180px;
-      position: absolute;
-      right: 50px;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: transform 0.3s ease;
-    }
-
-    header img:hover {
-      transform: translateY(-50%) scale(1.05);
+      height: 80px;
+      margin-right: 20px;
     }
 
     header h1 {
+      font-size: 1.8em;
       margin: 0;
-      padding-right: 100px;
-      text-align: center;
-      font-size: 1.9rem;
-    }
-
-    section {
-      display: none;
-      padding: 40px;
-      max-width: 900px;
-      margin: 40px auto;
-      background: rgba(255, 255, 255, 0);
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      z-index: 2;
-      position: relative;
-      backdrop-filter: blur(5px);
-    }
-
-    h2 {
-      color: #ffffff;
-    }
-
-    .botones-flotantes {
-      position: fixed;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 1001;
-    }
-
-    .botones-flotantes button {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      background-color: transparent;
-      color: rgb(0, 0, 0);
-      border: 1px solid rgba(128, 0, 32, 0.5);
-      padding: 12px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 18px;
-      font-family:Arial, Helvetica, sans-serif;
-      border-radius: 0 5px 5px 0;
-      transition: all 0.3s ease;
-        /* 🔹 Halo para el texto panel izquierdo */
-  text-shadow: 0 0 6px rgba(128, 0, 32, 0.6), 
-               0 0 12px rgba(128, 0, 32, 0.8);
-    }
-
-    .botones-flotantes button:hover {
-      background-color: rgba(128, 0, 32, 0.5);
-    }
-
-    .botones-flotantes button.active {
-      background-color: rgba(128, 0, 32, 0.7);
-      font-weight: bolder;
-    }
-
-    .servicios-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .servicio-carta {
-      background-color: rgba(165, 165, 165, 0);
-      border: 2px solid #800020;
-      border-radius: 15px;
-      padding: 15px;
-      text-align: center;
-      animation: flotar 2s ease-in-out infinite alternate;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .servicio-carta:hover {
-      transform: scale(1.05);
-    }
-
-    .servicio-carta img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    @keyframes flotar {
-      from { transform: translateY(0px); }
-      to { transform: translateY(-10px); }
-    }
-
-    .panel-servicios-derecho {
-      position: fixed;
-      top: 120px;
-      right: -300px;
-      width: 300px;
-      background-color: rgba(129, 59, 59, 0.822);
-      border-left: 2px solid #800020;
-      padding: 15px;
-      z-index: 1000;
-      overflow-y: auto;
-      max-height: calc(100vh - 120px);
-      box-shadow: -2px 0 5px rgba(240, 240, 240, 0.801);
-      transition: right 0.3s ease;
-      backdrop-filter: blur(5px);
-      color: rgb(255, 255, 255); /* <-- Color del texto */
-
-    }
-
-    .hover-trigger {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 10px;
-      height: 100%;
-      z-index: 1001;
-      cursor: pointer;
-    }
-
-    .hover-trigger:hover + .panel-servicios-derecho,
-    .panel-servicios-derecho:hover {
-      right: 0;
-    }
-
-    .panel-toggle-mobile {
-      display: none;
-      position: fixed;
-      top: 120px;
-      right: 0;
-      background-color: rgba(128, 0, 32, 0.8);
-      color: rgb(0, 0, 0);
-      padding: 10px;
-      z-index: 1002;
-      border-radius: 5px 0 0 5px;
-    }
-
-    .servicio-item {
-      cursor: pointer;
-      padding: 10px;
-      border-bottom: 1px solid rgba(128, 0, 32, 0.3);
-      transition: background-color 0.3s;
-    }
-
-    .servicio-item:hover {
-      background-color: rgba(128, 0, 32, 0.2);
-    }
-
-    .servicio-item img {
-      width: 100%;
-      max-height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 8px;
-    }
-
-    footer {
-      background-color: rgba(128, 0, 32, 0.8);
-      color: rgb(0, 0, 0);
-      text-align: center;
-      padding: 20px;
-      z-index: 2;
-      backdrop-filter: blur(5px);
-    }
-
-    .modal-servicio {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      z-index: 2000;
-      overflow-y: auto;
-    }
-
-    .modal-contenido {
-      background-color: rgb(143, 66, 66);
-      margin: 5% auto;
-      padding: 30px;
-      width: 80%;
-      max-width: 800px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgb(161, 90, 90);
-      position: relative;
-      color: rgb(0, 0, 0); /* <-- Color del texto */
-    }
-
-    .modal-contenido-extra {
-      background-color: rgba(129, 69, 69, 0.726);
-      margin: 5% auto;
-      padding: 30px;
-      width: 80%;
-      max-width: 600px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(187, 81, 81, 0.3);
-      position: relative;
-      color: rgb(0, 0, 0); /* <-- Color del texto */
-    }
-
-    .cerrar-modal {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 24px;
-      cursor: pointer;
-      color: #800020;
-    }
-
-    .modal-imagen {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
-
-    .modal-texto {
-      line-height: 1.6;
-    }
-
-    .modal-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .modal-servicio-extra {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      z-index: 2000;
-      overflow-y: auto;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
     }
 
     @media (max-width: 768px) {
-      .modal-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      header {
-        flex-direction: column;
-        text-align: center;
-        padding: 15px;
-        min-height: auto;
-      }
-      
       header img {
-        position: static;
-        height: 70px;
-        margin: 10px auto 0;
-        transform: none;
+        height: 60px;
       }
-      
       header h1 {
-        padding-right: 0;
-        font-size: 1.3rem;
+        font-size: 1.4em;
       }
+    }
 
-      .panel-toggle-mobile {
-        display: block;
-      }
-      
-      .hover-trigger {
-        display: none;
-      }
+    /* Botones laterales */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sidebar button {
+      writing-mode: vertical-rl;
+      background-color: rgba(128, 0, 32, 0.8);
+      border: none;
+      color: white;
+      padding: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .sidebar button:hover {
+      background-color: #a52a2a;
+    }
+
+    /* Contenedor de servicios */
+    .container {
+      margin: 40px auto;
+      max-width: 1000px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      border: 2px solid #800020;
+      border-radius: 10px;
+      text-align: center;
+      padding: 15px;
+      background-color: #fff;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      max-width: 100%;
+      max-height: 140px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    /* Modales */
+    .modal, .modal-extra {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-contenido, .modal-contenido-extra {
+      background: rgba(128, 0, 32, 0.95);
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      text-align: justify;
+    }
+
+    .modal button, .modal-extra button {
+      display: block;
+      margin: 15px auto 0;
+      padding: 10px 20px;
+      border: none;
+      background: #fff;
+      color: #800020;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .modal button:hover, .modal-extra button:hover {
+      background: #ddd;
+    }
+
+    /* Footer */
+    footer {
+      background-color: rgba(128, 0, 32, 0.8);
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    /* Botones sociales */
+    .social {
+      position: fixed;
+      right: 10px;
+      bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .social a img {
+      width: 35px;
+      transition: transform 0.2s;
+    }
+
+    .social a img:hover {
+      transform: scale(1.2);
     }
   </style>
 </head>
+<body>
 
-<body onload="mostrarSeccion('servicios')">
+  <!-- Encabezado -->
   <header>
+    <img src="Ing-Geológica.png" alt="Logo Geología">
     <h1>Departamento Académico de Geología</h1>
-    <img src="logo1.png" alt="Logo" />
   </header>
 
-  <div class="botones-flotantes">
-    <button onclick="mostrarSeccion('mision')">Misión</button>
-    <button onclick="mostrarSeccion('vision')">Visión</button>
-    <button onclick="mostrarSeccion('direccion')">Dirección</button>
-    <button onclick="mostrarSeccion('contacto')">Contáctanos</button>
-    <button onclick="mostrarSeccion('servicios')" class="active">Servicios</button>
+  <!-- Botones laterales -->
+  <div class="sidebar">
+    <button onclick="abrirModal('mision')">Misión</button>
+    <button onclick="abrirModal('vision')">Visión</button>
+    <button onclick="abrirModal('direccion')">Dirección</button>
+    <button onclick="abrirModal('contacto')">Contáctanos</button>
+    <button onclick="abrirModalExtra('extra2')">Asesorías</button>
+    <button onclick="abrirModalExtra('extra3')">Laboratorios</button>
+    <button onclick="abrirModalExtra('extra5')">Proyectos</button>
+    <button onclick="abrirModalExtra('extra6')">Investigación</button>
   </div>
 
-  <main>
-    <section id="mision">
-      <h2>Misión</h2>
-      <p>Brindar servicios geológicos y geotécnicos de calidad, con tecnología moderna y personal altamente calificado.</p>
-    </section>
-
-    <section id="vision">
-      <h2>Visión</h2>
-      <p>Ser referentes a nivel nacional en análisis geológico y técnico, promoviendo el desarrollo sostenible y la seguridad ambiental.</p>
-    </section>
-
-    <section id="direccion">
-      <h2>Dirección</h2>
-      <p>Universidad Nacional de Cajamarca – Av. Universitaria s/n</p>
-      <p>Ciudad Universitaria</p>
-      <p>Pabellon 4J</p>
-      <p>Telefonos: +51999999999</p>
-    </section>
-
-    <section id="contacto">
-      <h2>Contáctanos</h2>
-      <form action="https://formsubmit.co/tu_correo@example.com" method="POST">
-        <input type="text" name="nombre" placeholder="Tu nombre" required style="width:100%; padding:10px; margin-bottom:10px;">
-        <input type="email" name="correo" placeholder="Tu correo" required style="width:100%; padding:10px; margin-bottom:10px;">
-        <textarea name="mensaje" placeholder="Tu mensaje" rows="5" required style="width:100%; padding:10px; margin-bottom:10px;"></textarea>
-        <button type="submit" style="padding:10px 20px; background-color:#800020; color:white; border:none;">Enviar</button>
-        <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
-        <input type="hidden" name="_captcha" value="false">
-      </form>
-    </section>
-
-    <section id="servicios">
-      <h2 style="text-align:center;">Nuestros Servicios</h2>
-      <div class="servicios-grid">
-        <div class="servicio-carta" onclick="mostrarDetalleServicio('topografia')">
-          <img src="Estación.jpg">
-          <h4>Topografía</h4>
-        </div>
-        <div class="servicio-carta" onclick="mostrarDetalleServicio('drones')">
-          <img src="dji_frontal.jpg">
-          <h4>Drones</h4>
-        </div>
-        <div class="servicio-carta" onclick="mostrarDetalleServicio('sig')">
-          <img src="cartografiado_geologico.jpg">
-          <h4>SIG</h4>
-        </div>
-        <div class="servicio-carta" onclick="mostrarDetalleServicio('multiparametro')">
-          <img src="multiparametro.jpg">
-          <h4>Multiparámetro</h4>
-        </div>
-        <div class="servicio-carta" onclick="mostrarDetalleServicio('equipos')">
-          <img src="Picota_geologica.jpg">
-          <h4>Equipos</h4>
-        </div>
-        <div class="servicio-carta" onclick="mostrarDetalleServicio('alquiler')">
-          <img src="Brujula_Brunton.jpg">
-          <h4>Alquiler</h4>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <div class="hover-trigger"></div>
-<div class="panel-servicios-derecho" id="panelServicios">
-  <div class="servicio-item" onclick="mostrarDetalleExtra('extra1')">
-    <p><strong>Cartografiado Geotécnico:</strong> Análisis geotécnicos completos.</p>
-  </div>
-  <div class="servicio-item" onclick="mostrarDetalleExtra('extra2')">
-    <p><strong>Asesorías Técnicas:</strong> Consultoría especializada en geología.</p>
-  </div>
-  <div class="servicio-item" onclick="mostrarDetalleExtra('extra3')">
-    <p><strong>Estudios Geologicos:</strong> Evaluaciones mediante métodos indirectos del subsuelo.</p>
-  </div>
-  <div class="servicio-item" onclick="mostrarDetalleExtra('extra4')">
-    <p><strong>Talleres:</strong> Control de calidad y ejecución en trabajos geológicos.</p>
-  </div>
-  <div class="servicio-item" onclick="mostrarDetalleExtra('extra5')">
-    <p><strong>Modelamiento Geológico:</strong> Interpretación tridimensional de estructuras geológicas.</p>
-  </div>
-  <div class="servicio-item" onclick="mostrarDetalleExtra('extra6')">
-    <p><strong>Informes Técnicos:</strong> Elaboración y validación de documentos profesionales.</p>
-  </div>
-</div>
-
-<div class="panel-toggle-mobile" onclick="togglePanel()">
-  ▶
-</div>
-
-
-  <div style="position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1001;">
-    <a href="https://facebook.com" target="_blank"><img src="https://img.icons8.com/color/48/facebook-new.png"/></a>
-    <a href="https://instagram.com" target="_blank"><img src="https://img.icons8.com/color/48/instagram-new.png"/></a>
-    <a href="https://linkedin.com" target="_blank"><img src="https://img.icons8.com/color/48/linkedin.png"/></a>
-  </div>
-
-  <a href="https://wa.me/51995090548" target="_blank" style="position: fixed; bottom: 20px; left: 20px; z-index: 1001;">
-    <img src="https://img.icons8.com/color/96/whatsapp.png" style="width: 60px; height: 60px;">
-  </a>
-
-  <video autoplay muted loop playsinline style="position:fixed; top:0; left:0; min-width:100%; min-height:100%; z-index:-1; object-fit:cover;">
-    <source src="sin_logo.mp4" type="video/mp4">
-  </video>
-
-  <div id="modalServicio" class="modal-servicio">
-    <div class="modal-contenido">
-      <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
-      <div class="modal-grid">
-        <div>
-          <img id="modalImagen" class="modal-imagen" src="">
-        </div>
-        <div class="modal-texto">
-          <h2 id="modalTitulo"></h2>
-          <p id="modalDescripcion"></p>
-          <div id="modalDetalles"></div>
-        </div>
-      </div>
+  <!-- Contenedor de servicios -->
+  <div class="container">
+    <div class="card" onclick="mostrarDetalleServicio('Topografía')">
+      <img src="cartografiado_geológico.jpg" alt="Topografía">
+      <p>Topografía</p>
+    </div>
+    <div class="card" onclick="mostrarDetalleServicio('Drones')">
+      <img src="dji1.mp4" alt="Drones">
+      <p>Drones</p>
+    </div>
+    <div class="card" onclick="mostrarDetalleServicio('SIG')">
+      <img src="SIG.jpg" alt="SIG">
+      <p>SIG</p>
+    </div>
+    <div class="card" onclick="mostrarDetalleServicio('Multiparámetro')">
+      <img src="Microscopio_Barrido.jpg" alt="Multiparámetro">
+      <p>Multiparámetro</p>
+    </div>
+    <div class="card" onclick="mostrarDetalleServicio('Equipos')">
+      <img src="Microscopio_luz_reflejada.jpg" alt="Equipos">
+      <p>Equipos</p>
+    </div>
+    <div class="card" onclick="mostrarDetalleServicio('Alquiler')">
+      <img src="Picota_geológica.jpg" alt="Alquiler">
+      <p>Alquiler</p>
     </div>
   </div>
 
-  <!-- Nueva modal para servicios extras -->
-  <div id="modalServicioExtra" class="modal-servicio-extra">
-    <div class="modal-contenido-extra">
-      <span class="cerrar-modal" onclick="cerrarModalExtra()">&times;</span>
-      <img id="modalImagenExtra" class="modal-imagen" src="" style="max-height: 300px;">
-      <div class="modal-texto">
-        <h2 id="modalTituloExtra"></h2>
-        <p id="modalDescripcionExtra"></p>
-      </div>
+  <!-- Modal General -->
+  <div id="modal" class="modal">
+    <div class="modal-contenido" id="contenidoModal">
+      <button onclick="cerrarModal()">Cerrar</button>
     </div>
   </div>
 
+  <!-- Modal Extra -->
+  <div id="modalExtra" class="modal-extra">
+    <div class="modal-contenido-extra" id="contenidoModalExtra">
+      <button onclick="cerrarModalExtra()">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Departamento Académico de Ingeniería Geológica. Todos los derechos reservados.</p>
+    <p>&copy; 2025 Departamento Académico de Geología - Todos los derechos reservados.</p>
   </footer>
 
+  <!-- Redes sociales -->
+  <div class="social">
+    <a href="https://wa.me/" target="_blank"><img src="whatsapp.png" alt="WhatsApp"></a>
+    <a href="https://www.facebook.com/" target="_blank"><img src="facebook.png" alt="Facebook"></a>
+    <a href="https://www.instagram.com/" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+    <a href="https://www.linkedin.com/" target="_blank"><img src="linkedin.png" alt="LinkedIn"></a>
+  </div>
+
   <script>
-    function mostrarSeccion(id) {
-      const secciones = ['mision', 'vision', 'direccion', 'contacto', 'servicios'];
-      secciones.forEach(sec => {
-        const el = document.getElementById(sec);
-        if (el) el.style.display = (sec === id) ? 'block' : 'none';
-      });
-      
-      document.querySelectorAll('.botones-flotantes button').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.textContent.toLowerCase().includes(id)) {
-          btn.classList.add('active');
-        }
-      });
-    }
-
-    function togglePanel() {
-      const panel = document.getElementById("panelServicios");
-      panel.style.right = panel.style.right === "0px" ? "-300px" : "0px";
-    }
-
-    function mostrarDetalleServicio(servicioId) {
-      const modal = document.getElementById('modalServicio');
-      const modalTitulo = document.getElementById('modalTitulo');
-      const modalImagen = document.getElementById('modalImagen');
-      const modalDescripcion = document.getElementById('modalDescripcion');
-      const modalDetalles = document.getElementById('modalDetalles');
-      
-      switch(servicioId) {
-        case 'topografia':
-          modalTitulo.textContent = 'Servicio de Topografía';
-          modalImagen.src = 'car.jpg';
-          modalDescripcion.textContent = 'Levantamientos topográficos profesionales para diversos proyectos:';
-          modalDetalles.innerHTML = `
-            <ul>
-              <li>Levantamientos con estación total y GPS de precisión</li>
-              <li>Modelos digitales del terreno</li>
-              <li>Planos topográficos para construcción</li>
-              <li>Replanteo de puntos en campo</li>
-              <li>Topografía para minería e ingeniería civil</li>
-            </ul>
-            <p><strong>Equipos utilizados:</strong> Estación total Leica TS16, GPS RTK</p>
-          `;
+    // Abrir modal general
+    function abrirModal(tipo) {
+      let contenido = "";
+      switch(tipo) {
+        case 'mision':
+          contenido = "<h2>Misión</h2><p>Formar profesionales en Ciencias Geológicas...</p>";
           break;
-          
-        case 'drones':
-          modalTitulo.textContent = 'Servicio de Drones';
-          modalImagen.src = 'dji_frontal.jpg';
-          modalDescripcion.textContent = 'Fotogrametría aérea y análisis geoespacial:';
-          modalDetalles.innerHTML = `
-            <ul>
-              <li>Fotografía aérea de alta resolución</li>
-              <li>Ortomosaicos y modelos 3D</li>
-              <li>Análisis multiespectral con RTK</li>
-              <li>Inspección de infraestructura</li>
-              <li>Monitoreo de Proyectos Geologicos-geotecnicos</li>
-            </ul>
-            <p><strong>Equipos:</strong> DJI Phantom 4 RTK, cámara 20MP</p>
-          `;
+        case 'vision':
+          contenido = "<h2>Visión</h2><p>Ser un departamento líder en investigación...</p>";
           break;
-          
-        case 'sig':
-          modalTitulo.textContent = 'Sistemas de Información Geográfica';
-          modalImagen.src = 'SIG.jpg';
-          modalDescripcion.textContent = 'Soluciones geoespaciales integrales:';
-          modalDetalles.innerHTML = `
-            <ul>
-              <li>Elaboración de mapas temáticos</li>
-              <li>Elaboración de Planos mediante SIG</li>
-              <li>Plano Geológico</li>
-              <li>Plano Satelital</li>
-              <li>Plano Geomorfológico </li>
-              <li>Capacitación en software SIG</li>
-            </ul>
-            <p><strong>Software:</strong> ArcGIS, QGIS,</p>
-          `;
+        case 'direccion':
+          contenido = "<h2>Dirección</h2><p>Av. Universitaria s/n - Facultad de Ingeniería.</p>";
           break;
-        
-        
-        case 'multiparametro':
-          modalTitulo.textContent = 'Servicio de Monitoreo con Multiparámetro';
-          modalImagen.src = 'multiparametro.jpg';
-          modalDescripcion.textContent = 'Análisis in situ de calidad de agua con tecnología multiparamétrica:';
-          modalDetalles.innerHTML = `
-            <ul>
-              <li>Medición de pH, conductividad, TDS, oxígeno disuelto, ORP y temperatura</li>
-              <li>Monitoreo de agua superficial y subterránea</li>
-              <li>Evaluación de cumplimiento ambiental y normativas</li>
-              <li>Elaboración de informes técnicos interpretativos</li>
-            </ul>
-            <p><strong>Equipo utilizado:</strong> Multiparámetro Hanna HI9829 con GPS integrado</p>
-          `;
+        case 'contacto':
+          contenido = `
+            <h2>Contáctanos</h2>
+            <form action="https://formsubmit.co/tu_correo@gmail.com" method="POST">
+              <input type="text" name="nombre" placeholder="Tu nombre" required><br><br>
+              <input type="email" name="email" placeholder="Tu correo" required><br><br>
+              <textarea name="mensaje" placeholder="Escribe tu mensaje..." required></textarea><br><br>
+              <button type="submit">Enviar</button>
+            </form>`;
           break;
-
-        case 'equipos':
-          modalTitulo.textContent = 'Equipos Geológicos y Geotécnicos';
-          modalImagen.src = 'Picota_geologica.jpg';
-          modalDescripcion.textContent = 'Contamos con equipos profesionales disponibles para trabajo de campo:';
-          modalDetalles.innerHTML = `
-            <ul>
-              <li>Picotas, brújulas geológicas Brunton</li>
-              <li>Cintas métricas, clinómetros y martillos geológicos</li>
-              <li>Estuches geológicos y mochilas de campo</li>
-            </ul>
-            <p><strong>Uso:</strong> Proyectos de exploración, cartografía y estudios técnicos</p>
-          `;
-          break;
-
-        case 'alquiler':
-          modalTitulo.textContent = 'Servicio de Alquiler de Equipos';
-          modalImagen.src = 'Brujula_Brunton.jpg';
-          modalDescripcion.textContent = 'Disponibilidad de alquiler de equipos para estudiantes, investigadores o empresas:';
-          modalDetalles.innerHTML = `
-            <ul>
-              <li>Estación total, GPS de doble frecuencia</li>
-              <li>Multiparámetros y drones RTK</li>
-              <li>Brújulas geológicas, picotas, clinómetros</li>
-            </ul>
-            <p><strong>Condiciones:</strong> Incluye entrega y devolución supervisada, contrato simple</p>
-          `;
-          break;
-
-          case 'Equipos':
-          modalTitulo.textContent = 'Alquiler';
-          modalImagen.src = 'SIG.jpg';
-          modalDescripcion.textContent = 'xxxxxx:';
-          modalDetalles.innerHTML = `
-            <ul>
-              <li>Elaboración de mapas temáticos</li>
-              <li>Elaboración de Planos mediante SIG</li>
-              <li>Plano Geológico</li>
-              <li>Plano Satelital</li>
-              <li>Plano Geomorfológico </li>
-              <li>Capacitación en software SIG</li>
-            </ul>
-            <p><strong>Software:</strong> ArcGIS, QGIS,</p>
-          `;
-          break;  
       }
-      
-      modal.style.display = 'block';
-      document.body.style.overflow = 'hidden';
+      document.getElementById("contenidoModal").innerHTML = contenido + '<button onclick="cerrarModal()">Cerrar</button>';
+      document.getElementById("modal").style.display = "flex";
     }
-    
+
     function cerrarModal() {
-      document.getElementById('modalServicio').style.display = 'none';
-      document.body.style.overflow = 'auto';
+      document.getElementById("modal").style.display = "none";
     }
 
-    function mostrarDetalleExtra(extraId) {
-      const modal = document.getElementById('modalServicioExtra');
-      const modalTitulo = document.getElementById('modalTituloExtra');
-      const modalImagen = document.getElementById('modalImagenExtra');
-      const modalDescripcion = document.getElementById('modalDescripcionExtra');
-
-
-      /* <--  Descripcion de Servicios panel derecho */
-      switch(extraId) {
-        case 'extra1':
-          modalTitulo.textContent = 'Cartografiado Geotécnico';
-          modalImagen.src = 'cartografiado_geotecnico.jpg';
-          modalDescripcion.innerHTML = `
-            <p>Análisis geotécnicos completos para proyectos de construcción e ingeniería:</p>
-            <ul>
-              <li>identificacion del Macizo Rocoso</li>
-              <li>Caracterización Geomecánica</li>
-              <li>Factores como la Resistencia de Roca y Suelo, presencia de Agua Subterránea</li>
-              <li>Resistencia al corte</li>
-              <li>Cartografiado Geotécnico</li>
-              <li>Identificación y Zonificación de Riesgos Geológicos</li>
-              <li>Elaboracion de Mapa de Riesgos</li>
-              <li>Identificación de zonas Suceptibles a Caída de Rocas, Deslizamientos, Inestabilidad de Taludes</li>
-              
-            </ul>
-           
-          `;
-          break;
-          
+    // Abrir modal extra
+    function abrirModalExtra(tipo) {
+      let contenido = "";
+      switch(tipo) {
         case 'extra2':
-          modalTitulo.textContent = 'Asesorías Técnicas';
-          modalImagen.src = 'extra2.jpg';
-          modalDescripcion.innerHTML = `
-            <p>Consultoría especializada en geología para diversos sectores:</p>
-            <ul>
-              <li>Evaluación de riesgos geológicos</li>
-              <li>Estudios hidrogeológicos</li>
-              <li>Geología aplicada a minería</li>
-              <li>Evaluación de impacto ambiental</li>
-              <li>Geología estructural</li>
-            </ul>
-            <p><strong>Expertos en:</strong> Cartografía geológica, prospección minera, geotecnia</p>
-          `;
+          contenido = "<h2>Asesorías técnicas</h2><p>Ofrecemos servicios de consultoría en geología aplicada...</p>";
           break;
-          case 'extra3':
-          modalTitulo.textContent = 'Asesorías Técnicas';
-          modalImagen.src = 'extra2.jpg';
-          modalDescripcion.innerHTML = `
-            <p>Consultoría especializada en geología para diversos sectores:</p>
-            <ul>
-              <li>Evaluación de riesgos geológicos</li>
-              <li>Estudios hidrogeológicos</li>
-              <li>Geología aplicada a minería</li>
-              <li>Evaluación de impacto ambiental</li>
-              <li>Geología estructural</li>
-            </ul>
-            <p><strong>Expertos en:</strong> Cartografía geológica, prospección minera, geotecnia</p>
-          `;
+        case 'extra3':
+          contenido = "<h2>Laboratorios</h2><p>Contamos con modernos laboratorios equipados para estudios geológicos...</p>";
           break;
-          case 'extra4':
-          modalTitulo.textContent = 'Talleres Especializados en SIG, Modelamiento, Procesamiento Geoespacial aplicado a la Ingeniería Geológica';
-          modalImagen.src = 'extra2.jpg';
-          modalDescripcion.innerHTML = `
-            <p>Formación Aplicada en Sistemas de Información Geográfica, Modelamiento y Topografía:</p>
-            <ul>
-              <li>Taller de Software Aplicado a Sistemas de Información Geográfica (SIG)</li>
-              <li>Taller de Modelamiento Geológico</li>
-              <li>Taller de Topografía Aplicada</li>
-              <li>Taller de Procesamiento de Imágenes Satelitales (Landsat, Aster, Sentinel-2)</li>
-              <li>Taller de AutoCAD Aplicado a Geología</li>
-            </ul>
-            <p><strong>Expertos en:</strong> Modelamiento Geológico,Topografia, Procesamiento de Imagenes Satelitales prospección minero</p>
-            <p><strong>Software:</strong> ENVI,LEAPFROG GEO, DATAMINE, AUTOCAD, ARCGIS.</p>
-          `;
+        case 'extra5':
+          contenido = "<h2>Proyectos</h2><p>Participamos en proyectos multidisciplinarios de investigación aplicada...</p>";
           break;
-          case 'extra5':
-          modalTitulo.textContent = 'Asesorías Técnicas';
-          modalImagen.src = 'extra2.jpg';
-          modalDescripcion.innerHTML = `
-            <p>Consultoría especializada en geología para diversos sectores:</p>
-            <ul>
-              <li>Evaluación de riesgos geológicos</li>
-              <li>Estudios hidrogeológicos</li>
-              <li>Geología aplicada a minería</li>
-              <li>Evaluación de impacto ambiental</li>
-              <li>Geología estructural</li>
-            </ul>
-            <p><strong>Expertos en:</strong> Cartografía geológica, prospección minera, geotecnia</p>
-          `;
-          break;
-          case 'extra6':
-          modalTitulo.textContent = 'xxxxxxxxxxxxxx';
-          modalImagen.src = 'img/extra2.jpg';
-          modalDescripcion.innerHTML = `
-            <p>Consultoría especializada en geología para diversos sectores:</p>
-            <ul>
-              <li>Evaluación de riesgos geológicos</li>
-              <li>Estudios hidrogeológicos</li>
-              <li>Geología aplicada a minería</li>
-              <li>Evaluación de impacto ambiental</li>
-              <li>Geología estructural</li>
-            </ul>
-            <p><strong>Expertos en:</strong> Cartografía geológica, prospección minera, geotecnia</p>
-          `;
+        case 'extra6':
+          contenido = "<h2>Investigación</h2><p>Promovemos la investigación en áreas de geología minera, ambiental y geotécnica...</p>";
           break;
       }
-      
-      modal.style.display = 'block';
-      document.body.style.overflow = 'hidden';
+      document.getElementById("contenidoModalExtra").innerHTML = contenido + '<button onclick="cerrarModalExtra()">Cerrar</button>';
+      document.getElementById("modalExtra").style.display = "flex";
     }
-    
+
     function cerrarModalExtra() {
-      document.getElementById('modalServicioExtra').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-    
-    window.onclick = function(event) {
-      const modal = document.getElementById('modalServicio');
-      const modalExtra = document.getElementById('modalServicioExtra');
-      
-      if (event.target == modal) {
-        cerrarModal();
-      }
-      if (event.target == modalExtra) {
-        cerrarModalExtra();
-      }
+      document.getElementById("modalExtra").style.display = "none";
     }
 
-    document.addEventListener('click', function(event) {
-      const panel = document.getElementById('panelServicios');
-      const mobileBtn = document.querySelector('.panel-toggle-mobile');
-      
-      if (window.innerWidth <= 768 && 
-          !panel.contains(event.target) && 
-          event.target !== mobileBtn) {
-        panel.style.right = '-300px';
+    // Detalle de servicios
+    function mostrarDetalleServicio(servicio) {
+      let contenido = "";
+      switch(servicio) {
+        case 'Topografía':
+          contenido = "<h2>Topografía</h2><p>Servicios especializados en levantamientos topográficos...</p>";
+          break;
+        case 'Drones':
+          contenido = "<h2>Drones</h2><p>Exploración aérea con drones para estudios geológicos...</p>";
+          break;
+        case 'SIG':
+          contenido = "<h2>Sistemas de Información Geográfica</h2><p>Procesamiento y análisis espacial de datos geológicos...</p>";
+          break;
+        case 'Multiparámetro':
+          contenido = "<h2>Multiparámetro</h2><p>Equipos multiparámetro para análisis físico-químicos...</p>";
+          break;
+        case 'Equipos':
+          contenido = "<h2>Equipos</h2><p>Disponibilidad de microscopios, lupas, picotas y más...</p>";
+          break;
+        case 'Alquiler':
+          contenido = "<h2>Alquiler</h2><p>Alquiler de equipos especializados para proyectos...</p>";
+          break;
       }
-    });
+      document.getElementById("contenidoModal").innerHTML = contenido + '<button onclick="cerrarModal()">Cerrar</button>';
+      document.getElementById("modal").style.display = "flex";
+    }
   </script>
-</body>
 
+</body>
 </html>
+
