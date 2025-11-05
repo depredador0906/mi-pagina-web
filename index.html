@@ -408,7 +408,7 @@
           <h4>Equipos Geológicos y Geotécnicos</h4>
         </div>
         <div class="servicio-carta" onclick="mostrarDetalleServicio('alquiler')">
-          <img src="Brujula_Brunton.jpg">
+          <img src="Microscopio_Barrido.jpg">
           <h4>Laboratorios</h4>
         </div>
       </div>
@@ -519,7 +519,7 @@
       switch(servicioId) {
         case 'topografia':
           modalTitulo.textContent = 'Servicio de Topografía';
-          modalImagen.src = 'Estacion.jpg';
+          modalImagen.src = 'SouthN6.jpg';
           modalDescripcion.textContent = 'Levantamientos topográficos profesionales para diversos proyectos:';
           modalDetalles.innerHTML = `
             <ul>
@@ -596,21 +596,7 @@
             <p><strong>Equipo utilizado:</strong> Multiparámetro Hanna </p>
           `;
           break;
-
-        case 'equipos':
-          modalTitulo.textContent = 'Equipos Geológicos y Geotécnicos';
-          modalImagen.src = 'Picota_geologica.jpg';
-          modalDescripcion.textContent = 'Contamos con equipos profesionales disponibles para trabajo de campo:';
-          modalDetalles.innerHTML = `
-            <ul>
-              <li>Picotas, brújulas geológicas Brunton</li>
-              <li>Cintas métricas, clinómetros y martillos geológicos</li>
-              <li>Estuches geológicos y mochilas de campo</li>
-            </ul>
-            <p><strong>Uso:</strong> Proyectos de exploración, cartografía y estudios técnicos</p>
-          `;
-          break;
-
+     
         case 'Alquiler de Equipos de Exploracion y Geotecnia ':
           modalTitulo.textContent = 'Servicio de Alquiler de Equipos';
           modalImagen.src = 'Brujula_Brunton.jpg';
@@ -811,6 +797,7 @@
   </script>
 </body>
 </html>
+
 
 
 
