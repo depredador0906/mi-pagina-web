@@ -519,7 +519,7 @@
       switch(servicioId) {
         case 'topografia':
           modalTitulo.textContent = 'Servicio de Topografía';
-          modalImagen.src = 'car.jpg';
+          modalImagen.src = 'Estacion.jpg';
           modalDescripcion.textContent = 'Levantamientos topográficos profesionales para diversos proyectos:';
           modalDetalles.innerHTML = `
             <ul>
@@ -527,9 +527,12 @@
               <li>Modelos digitales del terreno</li>
               <li>Planos topográficos para construcción</li>
               <li>Replanteo de puntos en campo</li>
-              <li>Topografía para minería e ingeniería civil</li>
+              <li>Topografía para minería e ingeniería </li>
+              <li>Nivelacion de Terrenos </li>
+              <li>Georeferenciacion </li>
+              <li>Topografía Minera </li>
             </ul>
-            <p><strong>Equipos utilizados:</strong> Estación total Leica TS16, GPS RTK</p>
+            <p><strong>Equipos utilizados:</strong> Estación total South N6, GPS Garmin, RTK</p>
           `;
           break;
           
@@ -544,8 +547,15 @@
               <li>Análisis multiespectral con RTK</li>
               <li>Inspección de infraestructura</li>
               <li>Monitoreo de Proyectos Geologicos-geotecnicos</li>
+              <li>Levantamiento fotogramétrico con dron DJI Mavic 3T</li>
+              <li>Modelado 3D del terreno</li>
+              <li>Inspección aérea de zonas de difícil acceso</li>
+              <li>Reconocimiento de terreno</li>
+              <li>Monitoreo de áreas y obras</li>
+              
+              
             </ul>
-            <p><strong>Equipos:</strong> DJI Mavic 3T, RTK, cámara 20MP</p>
+            <p><strong>Equipos:</strong> DJI Mavic 3T, RTK, Sensor CMOS de 48 MP, Cámara Termica </p>
           `;
           break;
           
@@ -560,9 +570,10 @@
               <li>Plano Geológico</li>
               <li>Plano Satelital</li>
               <li>Plano Geomorfológico </li>
+              <li>Plano Geotécnico</li>
               <li>Capacitación en software SIG</li>
             </ul>
-            <p><strong>Software:</strong> ArcGIS, QGIS,</p>
+            <p><strong>Software:</strong> ArcGIS, QGIS,AutoCAD</p>
           `;
           break;
         
@@ -573,10 +584,14 @@
           modalDescripcion.textContent = 'Análisis in situ de calidad de agua con tecnología multiparamétrica:';
           modalDetalles.innerHTML = `
             <ul>
-              <li>Medición de pH, conductividad, TDS, oxígeno disuelto, ORP y temperatura</li>
+              <li>Medición de pH, conductividad, TDS, oxígeno disuelto y temperatura</li>
               <li>Monitoreo de agua superficial y subterránea</li>
               <li>Evaluación de cumplimiento ambiental y normativas</li>
               <li>Elaboración de informes técnicos interpretativos</li>
+              <li>Monitoreo ambiental en proyectos mineros o industriales</li>
+              <li>Evaluación de fuentes de agua superficial y subterránea.</li>
+              <li>Control de calidad de agua en laboratorios o estaciones de monitoreo.</li>
+              <li>Seguimiento de ríos, quebradas, lagunas y efluentes.</li>
             </ul>
             <p><strong>Equipo utilizado:</strong> Multiparámetro Hanna </p>
           `;
@@ -596,34 +611,52 @@
           `;
           break;
 
-        case 'alquiler':
+        case 'Alquiler de Equipos de Exploracion y Geotecnia ':
           modalTitulo.textContent = 'Servicio de Alquiler de Equipos';
           modalImagen.src = 'Brujula_Brunton.jpg';
           modalDescripcion.textContent = 'Disponibilidad de alquiler de equipos para estudiantes, investigadores o empresas:';
           modalDetalles.innerHTML = `
             <ul>
-              <li>Estación total, GPS de doble frecuencia</li>
-              <li>Multiparámetros y drones RTK</li>
-              <li>Brújulas geológicas, picotas, clinómetros</li>
+              <li>Estación total</li>
+              <li>Martillo de Schmidt</li>
+              <li>Brujula Brunton Geotecnica</li>
+              <li>Brujula Brunton Azimutal </li>
+              <li>Picota Mango Corto</li>
+              <li>Rayador</li>
+              <li>Lupa Geologica de 20x</li>
+              <li>Multiparámetros</li>
+              <li>...</li>
             </ul>
             <p><strong>Condiciones:</strong> Incluye entrega y devolución supervisada, contrato simple</p>
           `;
           break;
 
-          case 'Equipos':
-          modalTitulo.textContent = 'Alquiler';
-          modalImagen.src = 'SIG.jpg';
+          case 'Laboratorios ':
+          modalTitulo.textContent = 'Laboratorios';
+          modalImagen.src = '.jpg';
           modalDescripcion.textContent = 'xxxxxx:';
           modalDetalles.innerHTML = `
             <ul>
-              <li>Elaboración de mapas temáticos</li>
-              <li>Elaboración de Planos mediante SIG</li>
-              <li>Plano Geológico</li>
-              <li>Plano Satelital</li>
-              <li>Plano Geomorfológico </li>
-              <li>Capacitación en software SIG</li>
+              <li>Laboratorio de Petromineralogia</li>
+              <li>Analisis y Descripcion de Muestras </li>
+              <li>Identificacion y reconocimiento de Rocas </li>
+              <li>Analisis Macroscopico </li>
+              <li>Análisis mineralógico complementario </li>
+              <li>Laboratorio de Exploraciones</li>
+              <li>Induccion de Equipos de Exploracion  </li>
+              <li>Laboratorio de Geoquimica </li>
+              <li>Análisis químico mediante MP-AES </li>
+              <li>Análisis geoquímico de aguas </li>
+              <li>Laboratorio de Computación </li>
+              <li>Procesamiento de datos geológicos y mineros</li>
+              <li>Elaboración de mapas y modelos digitales</li>
+              <li>sDiseño y dibujo técnico asistido por computadora </li>
+              <li>Soporte informático y técnico especializado</li>
+              <li>Procesamiento de imágenes y ortofotos</li>
+              <li>....</li>
+                         
             </ul>
-            <p><strong>Software:</strong> ArcGIS, QGIS,</p>
+            <p><strong>Software:</strong> Laboratorios:Exploraciones, Petromineralogía, Cómputo, Geoquímica,Proximamente Geotecnia.</p>
           `;
           break;  
       }
@@ -713,31 +746,31 @@
           `;
           break;
           case 'extra5':
-          modalTitulo.textContent = 'Asesorías Técnicas';
+          modalTitulo.textContent = 'Procesamiento de Información Geoquímica';
           modalImagen.src = 'extra2.jpg';
           modalDescripcion.innerHTML = `
             <p>Consultoría especializada en geología para diversos sectores:</p>
             <ul>
-              <li>Evaluación de riesgos geológicos</li>
-              <li>Estudios hidrogeológicos</li>
-              <li>Geología aplicada a minería</li>
-              <li>Evaluación de impacto ambiental</li>
-              <li>Geología estructural</li>
+              <li>Normalización y estandarización de resultados</li>
+              <li>Análisis estadístico y multivariante</li>
+              <li>Entrega de reportes técnicos especializados</li>
+              <li>.....</li>
+              <li>.....</li>
             </ul>
-            <p><strong>Expertos en:</strong> Cartografía geológica, prospección minera, geotecnia</p>
+            <p><strong>Expertos en:</strong> Manejo de MP-AES, etc</p>
           `;
           break;
           case 'extra6':
-          modalTitulo.textContent = 'xxxxxxxxxxxxxx';
+          modalTitulo.textContent = 'Línea de Servicios de Ingeniería Geológica';
           modalImagen.src = 'extra2.jpg';
           modalDescripcion.innerHTML = `
             <p>Consultoría especializada en geología para diversos sectores:</p>
             <ul>
-              <li>Evaluación de riesgos geológicos</li>
-              <li>Estudios hidrogeológicos</li>
-              <li>Geología aplicada a minería</li>
-              <li>Evaluación de impacto ambiental</li>
-              <li>Geología estructural</li>
+              <li>Elaboración de mapas temáticos y modelos digitales del terreno (MDT)</li>
+              <li>Evaluación de sitios para obras de ingeniería (presas, carreteras, túneles)</li>
+              <li>Determinación de zonas de recarga y vulnerabilidad hidrogeológica</li>
+              <li>Análisis de materiales de construcción (rocas y agregados)</li>
+              <li>Caracterización geotécnica de suelos y rocas</li>
             </ul>
             <p><strong>Expertos en:</strong> Cartografía geológica, prospección minera, geotecnia</p>
           `;
@@ -778,6 +811,7 @@
   </script>
 </body>
 </html>
+
 
 
 
