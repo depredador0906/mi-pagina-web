@@ -523,7 +523,7 @@
           modalDescripcion.textContent = 'Levantamientos topográficos profesionales para diversos proyectos:';
           modalDetalles.innerHTML = `
             <ul>
-              <li>Levantamientos con estación total y GPS de precisión</li>
+              <li>Levantamientos con Estación Total y GPS de precisión</li>
               <li>Modelos digitales del terreno</li>
               <li>Planos topográficos para construcción</li>
               <li>Replanteo de puntos en campo</li>
@@ -532,7 +532,7 @@
               <li>Georeferenciacion </li>
               <li>Topografía Minera </li>
             </ul>
-            <p><strong>Equipos utilizados:</strong> Estación total South N6, GPS Garmin, RTK</p>
+            <p><strong>Equipos utilizados:</strong> Estación total South N6, GPS Garmin, </p>
           `;
           break;
           
@@ -573,7 +573,7 @@
               <li>Plano Geotécnico</li>
               <li>Capacitación en software SIG</li>
             </ul>
-            <p><strong>Software:</strong> ArcGIS, QGIS,AutoCAD</p>
+            <p><strong>Software:</strong> ArcGIS,QGIS,AutoCAD,Leapfrog Geo</p>
           `;
           break;
         
@@ -597,54 +597,43 @@
           `;
           break;
      
-        case 'Alquiler de Equipos de Exploracion y Geotecnia ':
-          modalTitulo.textContent = 'Servicio de Alquiler de Equipos';
-          modalImagen.src = 'Brujula_Brunton.jpg';
-          modalDescripcion.textContent = 'Disponibilidad de alquiler de equipos para estudiantes, investigadores o empresas:';
-          modalDetalles.innerHTML = `
-            <ul>
-              <li>Estación total</li>
-              <li>Martillo de Schmidt</li>
-              <li>Brujula Brunton Geotecnica</li>
-              <li>Brujula Brunton Azimutal </li>
-              <li>Picota Mango Corto</li>
-              <li>Rayador</li>
-              <li>Lupa Geologica de 20x</li>
-              <li>Multiparámetros</li>
-              <li>...</li>
-            </ul>
-            <p><strong>Condiciones:</strong> Incluye entrega y devolución supervisada, contrato simple</p>
-          `;
-          break;
+        case 'equipos':
+  modalTitulo.textContent = 'Equipos Geológicos y Geotécnicos';
+  modalImagen.src = 'Picota_geologica.jpg';
+  modalDescripcion.textContent = 'Equipos disponibles para trabajos de campo, geología y geotecnia:';
+  modalDetalles.innerHTML = `
+    <ul>
+      <li>Brujula Brunton Geológica</li>
+      <li>Brujula Brunton Geotécnica</li>
+      <li>Martillo geológico (Picota)</li>
+      <li>Lupa 20x</li>
+      <li>Rayador</li>
+      <li>Martillo Schmidt</li>
+      <li>GPS Garmin</li>
+      <li>Multiparámetro Hanna</li>
+      <li>Estación Total</li>
+    </ul>
+    <p><strong>Condiciones:</strong> Uso institucional, prácticas de campo, alquiler y capacitaciones.</p>
+  `;
+break;
 
-          case 'Laboratorios ':
-          modalTitulo.textContent = 'Laboratorios';
-          modalImagen.src = '.jpg';
-          modalDescripcion.textContent = 'xxxxxx:';
-          modalDetalles.innerHTML = `
-            <ul>
-              <li>Laboratorio de Petromineralogia</li>
-              <li>Analisis y Descripcion de Muestras </li>
-              <li>Identificacion y reconocimiento de Rocas </li>
-              <li>Analisis Macroscopico </li>
-              <li>Análisis mineralógico complementario </li>
-              <li>Laboratorio de Exploraciones</li>
-              <li>Induccion de Equipos de Exploracion  </li>
-              <li>Laboratorio de Geoquimica </li>
-              <li>Análisis químico mediante MP-AES </li>
-              <li>Análisis geoquímico de aguas </li>
-              <li>Laboratorio de Computación </li>
-              <li>Procesamiento de datos geológicos y mineros</li>
-              <li>Elaboración de mapas y modelos digitales</li>
-              <li>sDiseño y dibujo técnico asistido por computadora </li>
-              <li>Soporte informático y técnico especializado</li>
-              <li>Procesamiento de imágenes y ortofotos</li>
-              <li>....</li>
-                         
-            </ul>
-            <p><strong>Software:</strong> Laboratorios:Exploraciones, Petromineralogía, Cómputo, Geoquímica,Proximamente Geotecnia.</p>
-          `;
-          break;  
+
+          case 'alquiler':
+  modalTitulo.textContent = 'Laboratorios Institucionales';
+  modalImagen.src = 'Microscopio_Barrido.jpg';
+  modalDescripcion.textContent = 'Laboratorios especializados para análisis geológicos, geoquímicos y modelamiento.';
+  modalDetalles.innerHTML = `
+    <ul>
+      <li><strong>Laboratorio de Petromineralogía:</strong> Descripción de rocas, análisis microscópico.</li>
+      <li><strong>Laboratorio de Exploraciones:</strong> Equipos de campo y entrenamiento.</li>
+      <li><strong>Laboratorio de Geoquímica:</strong> MP-AES, análisis de aguas y rocas.</li>
+      <li><strong>Laboratorio de Computación:</strong> SIG, modelamiento geológico y software minero.</li>
+    </ul>
+    <p><strong>Software:</strong> ArcGIS, QGIS, Leapfrog Geo, Datamine, AutoCAD.</p>
+  `;
+break;
+
+
       }
       
       modal.style.display = 'block';
@@ -664,104 +653,110 @@
 
 
       /* <--  Descripcion de Servicios panel derecho */
-      switch(extraId) {
-        case 'extra1':
-          modalTitulo.textContent = 'Cartografiado Geotécnico';
-          modalImagen.src = 'cartografiado_geotecnico.jpg';
-          modalDescripcion.innerHTML = `
-            <p>Análisis geotécnicos completos para proyectos de construcción e ingeniería:</p>
-            <ul>
-              <li>identificacion del Macizo Rocoso</li>
-              <li>Caracterización Geomecánica</li>
-              <li>Factores como la Resistencia de Roca y Suelo, presencia de Agua Subterránea</li>
-              <li>Resistencia al corte</li>
-              <li>Cartografiado Geotécnico</li>
-              <li>Identificación y Zonificación de Riesgos Geológicos</li>
-              <li>Elaboracion de Mapa de Riesgos</li>
-              <li>Identificación de zonas Suceptibles a Caída de Rocas, Deslizamientos, Inestabilidad de Taludes</li>
-              
-            </ul>
-           
-          `;
-          break;
-          
-        case 'extra2':
-          modalTitulo.textContent = 'Asesorías Técnicas';
-          modalImagen.src = 'extra2.jpg';
-          modalDescripcion.innerHTML = `
-            <p>Consultoría especializada en geología para diversos sectores:</p>
-            <ul>
-              <li>Evaluación de riesgos geológicos</li>
-              <li>Estudios hidrogeológicos</li>
-              <li>Geología aplicada a minería</li>
-              <li>Evaluación de impacto ambiental</li>
-              <li>Geología estructural</li>
-            </ul>
-            <p><strong>Expertos en:</strong> Cartografía geológica, prospección minera, geotecnia</p>
-          `;
-          break;
-          case 'extra3':
-          modalTitulo.textContent = 'Asesorías Técnicas';
-          modalImagen.src = 'extra2.jpg';
-          modalDescripcion.innerHTML = `
-            <p>Consultoría especializada en geología para diversos sectores:</p>
-            <ul>
-              <li>Evaluación de riesgos geológicos</li>
-              <li>Estudios hidrogeológicos</li>
-              <li>Geología aplicada a minería</li>
-              <li>Evaluación de impacto ambiental</li>
-              <li>Geología estructural</li>
-            </ul>
-            <p><strong>Expertos en:</strong> Cartografía geológica, prospección minera, geotecnia</p>
-          `;
-          break;
-          case 'extra4':
-          modalTitulo.textContent = 'Talleres Especializados en SIG, Modelamiento, Procesamiento Geoespacial aplicado a la Ingeniería Geológica';
-          modalImagen.src = 'extra2.jpg';
-          modalDescripcion.innerHTML = `
-            <p>Formación Aplicada en Sistemas de Información Geográfica, Modelamiento y Topografía:</p>
-            <ul>
-              <li>Taller de Software Aplicado a Sistemas de Información Geográfica (SIG)</li>
-              <li>Taller de Modelamiento Geológico</li>
-              <li>Taller de Topografía Aplicada</li>
-              <li>Taller de Procesamiento de Imágenes Satelitales (Landsat, Aster, Sentinel-2)</li>
-              <li>Taller de AutoCAD Aplicado a Geología</li>
-            </ul>
-            <p><strong>Expertos en:</strong> Modelamiento Geológico,Topografia, Procesamiento de Imagenes Satelitales prospección minero</p>
-            <p><strong>Software:</strong> ENVI,LEAPFROG GEO, DATAMINE, AUTOCAD, ARCGIS.</p>
-          `;
-          break;
-          case 'extra5':
-          modalTitulo.textContent = 'Procesamiento de Información Geoquímica';
-          modalImagen.src = 'extra2.jpg';
-          modalDescripcion.innerHTML = `
-            <p>Consultoría especializada en geología para diversos sectores:</p>
-            <ul>
-              <li>Normalización y estandarización de resultados</li>
-              <li>Análisis estadístico y multivariante</li>
-              <li>Entrega de reportes técnicos especializados</li>
-              <li>.....</li>
-              <li>.....</li>
-            </ul>
-            <p><strong>Expertos en:</strong> Manejo de MP-AES, etc</p>
-          `;
-          break;
-          case 'extra6':
-          modalTitulo.textContent = 'Línea de Servicios de Ingeniería Geológica';
-          modalImagen.src = 'extra2.jpg';
-          modalDescripcion.innerHTML = `
-            <p>Consultoría especializada en geología para diversos sectores:</p>
-            <ul>
-              <li>Elaboración de mapas temáticos y modelos digitales del terreno (MDT)</li>
-              <li>Evaluación de sitios para obras de ingeniería (presas, carreteras, túneles)</li>
-              <li>Determinación de zonas de recarga y vulnerabilidad hidrogeológica</li>
-              <li>Análisis de materiales de construcción (rocas y agregados)</li>
-              <li>Caracterización geotécnica de suelos y rocas</li>
-            </ul>
-            <p><strong>Expertos en:</strong> Cartografía geológica, prospección minera, geotecnia</p>
-          `;
-          break;
-      }
+switch(extraId) {
+
+  case 'extra1':
+    modalTitulo.textContent = 'Cartografiado Geotécnico';
+    modalImagen.src = 'cartografiado_geotecnico.jpg';
+    modalDescripcion.innerHTML = `
+      <p>Análisis geotécnicos completos para proyectos de construcción e ingeniería:</p>
+      <ul>
+        <li>identificacion del Macizo Rocoso</li>
+        <li>Caracterización Geomecánica</li>
+        <li>Factores como la Resistencia de Roca y Suelo, presencia de Agua Subterránea</li>
+        <li>Resistencia al corte</li>
+        <li>Cartografiado Geotécnico</li>
+        <li>Identificación y Zonificación de Riesgos Geológicos</li>
+        <li>Elaboracion de Mapa de Riesgos</li>
+        <li>Identificación de zonas Suceptibles a Caída de Rocas, Deslizamientos, Inestabilidad de Taludes</li>
+      </ul>
+    `;
+    break;
+
+  case 'extra2':
+    modalTitulo.textContent = 'Asesorías Técnicas';
+    modalImagen.src = 'extra2.jpg';
+    modalDescripcion.innerHTML = `
+      <p>Consultoría especializada en geología para diversos sectores:</p>
+      <ul>
+        <li>Evaluación de riesgos geológicos</li>
+        <li>Estudios hidrogeológicos</li>
+        <li>Geología aplicada a minería</li>
+        <li>Evaluación de impacto ambiental</li>
+        <li>Geología estructural</li>
+      </ul>
+      <p><strong>Expertos en:</strong> Cartografía geológica, prospección minera, geotecnia</p>
+    `;
+    break;
+
+  /* 🔧 CORREGIDO: extra3 ahora tiene un case único,
+     pero mantiene EXACTAMENTE tus mismas descripciones (no tocadas) */
+  case 'extra3':
+    modalTitulo.textContent = 'Estudios Geologicos';
+    modalImagen.src = 'extra2.jpg';
+    modalDescripcion.innerHTML = `
+      <p>Consultoría especializada en geología para diversos sectores:</p>
+      <ul>
+        <li>Evaluación de riesgos geológicos</li>
+        <li>Estudios hidrogeológicos</li>
+        <li>Geología aplicada a minería</li>
+        <li>Evaluación de impacto ambiental</li>
+        <li>Geología estructural</li>
+      </ul>
+      <p><strong>Expertos en:</strong> Cartografía geológica, prospección minera, geotecnia</p>
+    `;
+    break;
+
+  case 'extra4':
+    modalTitulo.textContent = 'Talleres Especializados en SIG, Modelamiento, Procesamiento Geoespacial aplicado a la Ingeniería Geológica';
+    modalImagen.src = 'extra2.jpg';
+    modalDescripcion.innerHTML = `
+      <p>Formación Aplicada en Sistemas de Información Geográfica, Modelamiento y Topografía:</p>
+      <ul>
+        <li>Taller de Software Aplicado a Sistemas de Información Geográfica (SIG)</li>
+        <li>Taller de Modelamiento Geológico</li>
+        <li>Taller de Topografía Aplicada</li>
+        <li>Taller de Procesamiento de Imágenes Satelitales (Landsat, Aster, Sentinel-2)</li>
+        <li>Taller de AutoCAD Aplicado a Geología</li>
+      </ul>
+      <p><strong>Expertos en:</strong> Modelamiento Geológico,Topografia, Procesamiento de Imagenes Satelitales prospección minero</p>
+      <p><strong>Software:</strong> ENVI,LEAPFROG GEO, DATAMINE, AUTOCAD, ARCGIS.</p>
+    `;
+    break;
+
+  case 'extra5':
+    modalTitulo.textContent = 'Procesamiento de Información Geoquímica';
+    modalImagen.src = 'extra2.jpg';
+    modalDescripcion.innerHTML = `
+      <p>Consultoría especializada en geología para diversos sectores:</p>
+      <ul>
+        <li>Normalización y estandarización de resultados</li>
+        <li>Análisis estadístico y multivariante</li>
+        <li>Entrega de reportes técnicos especializados</li>
+        <li>.....</li>
+        <li>.....</li>
+      </ul>
+      <p><strong>Expertos en:</strong> Manejo de MP-AES, etc</p>
+    `;
+    break;
+
+  case 'extra6':
+    modalTitulo.textContent = 'Línea de Servicios de Ingeniería Geológica';
+    modalImagen.src = 'extra2.jpg';
+    modalDescripcion.innerHTML = `
+      <p>Consultoría especializada en geología para diversos sectores:</p>
+      <ul>
+        <li>Elaboración de mapas temáticos y modelos digitales del terreno (MDT)</li>
+        <li>Evaluación de sitios para obras de ingeniería (presas, carreteras, túneles)</li>
+        <li>Determinación de zonas de recarga y vulnerabilidad hidrogeológica</li>
+        <li>Análisis de materiales de construcción (rocas y agregados)</li>
+        <li>Caracterización geotécnica de suelos y rocas</li>
+      </ul>
+      <p><strong>Expertos en:</strong> Cartografía geológica, prospección minera, geotecnia</p>
+    `;
+    break;
+}
+
       
       modal.style.display = 'block';
       document.body.style.overflow = 'hidden';
@@ -797,6 +792,13 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 
